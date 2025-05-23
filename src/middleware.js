@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server";
 
 export const config = {
-  matcher: [
-    "/((?!_next|api|static|favicon.ico).*)",
-  ],
-};
-
+    matcher: [
+      /*
+       * Match all paths except for:
+       * 1. /api routes
+       * 2. /_next (Next.js internals)
+       * 3. /fonts (inside /public)
+       * 4. /examples (inside /public)
+       * 5. all root files inside /public (e.g. /favicon.ico)
+       */
+      '/((?!api|_next|_vercel|fonts|examples|legal|icons|.well-known|[\\w-]+\\.\\w+).*)',
+    ],
+  };
+  
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   console.log("Incoming pathname:", pathname);
