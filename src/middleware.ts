@@ -15,22 +15,19 @@ export const config = {
 };
 
 export async function middleware(req: NextRequest) {
-  const { pathname, search } = req.nextUrl;
-  const fullPath = `${pathname}${search}`;
+  const { pathname } = req.nextUrl;
   const [territoryPath, localePath, pagePath] = pathname.split("/").slice(1);
 
   // Note: when we visit the root, always redirect to default territory + default locale
   if (!territoryPath) {
-    return NextResponse.redirect(new URL(`/spencer/newmiddleware`, req.url));
+    return NextResponse.redirect(new URL(`/test/test`, req.url));
   }
 
   let response = NextResponse.next();
 
-  const userIsComplete = req.cookies.get("userIsComplete")?.value === "true";
-
   if (!pagePath) {
     const url = req.nextUrl.clone();
-    url.pathname = `/spencer/newmiddleware/home`;
+    url.pathname = `/test/test/home`;
     response = NextResponse.rewrite(url);
   }
 
