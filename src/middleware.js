@@ -10,6 +10,7 @@ export const config = {
 };
 
 export function middleware(request) {
+  console.log("Middleware processing:", request.nextUrl.pathname);
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {
