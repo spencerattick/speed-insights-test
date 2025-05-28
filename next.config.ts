@@ -5,3 +5,17 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+
+module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/test/something/home',
+        permanent: false,
+        // Vercel handles these smarter with analytics
+      }
+    ]
+  }
+}
