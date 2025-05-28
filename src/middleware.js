@@ -16,7 +16,7 @@ export const config = {
   
 export function middleware(request) {
   const { pathname } = request.nextUrl;
-  console.log("Incoming pathname:", pathname);
+  console.log("Incoming pathname: ", pathname);
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
