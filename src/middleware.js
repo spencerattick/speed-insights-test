@@ -15,11 +15,11 @@ export const config = {
   };
   
 export function middleware(request) {
-  const { pathname, url } = request.nextUrl;
+  const { pathname } = request.nextUrl;
   console.log("Incoming pathname: ", pathname);
   
   // Explicitly allow all Vercel analytics traffic
-  if (url.pathname.startsWith('/_vercel')) {
+  if (pathname.startsWith('/_vercel')) {
     return NextResponse.next();
   }
 
