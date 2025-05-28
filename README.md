@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Problem
+The Speed Insights script is not found - a 404 is thrown when it is requested.
 
-## Getting Started
+## Important Details
+No top-level `layout.tsx` exists. The file structure being used is closer to the one I have created here: 
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src
+├── app
+│   └── [territory]
+│       └── [locale]
+│           ├── (account)
+│           │   └── account
+│           │       └── page.tsx
+│           ├── (default)
+│           │   └── home
+│           │       └── page.tsx
+│           └── layout.tsx
+└── middleware.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The Speed Insights component is being loaded into `src/app/[territory]/[locale]/layout.tsx`. In my own testing, I have not found a functional problem with this. The script loads just fine for me.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+When the homepage is accessed, there is an immediate redirect in middleware from `/` to `/[territory]/[locale]`. This might be creating an issue due to the increased complexity of the production application, but it doesn't cause an issue for me.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Debugging
+This repo is an attempt at reproducing the issue, but despite trying many different possible implementations, the Speed Insight script loads for me every time. I've made adjustments to the file structure and to middleware, and have tried loading Speed Insights in other ways. Nothing creates a situation where a 404 is returned for the Speed Insights script on my end.
