@@ -26,4 +26,4 @@ When the homepage is accessed, there is an immediate redirect in middleware from
 ## Debugging
 This repo is an attempt at reproducing the issue, but despite trying many different possible implementations, the Speed Insight script loads for me every time. I've made adjustments to the file structure and to middleware, and have tried loading Speed Insights in other ways. Nothing creates a situation where a 404 is returned for the Speed Insights script on my end.
 
-![screenshot of script loading correctly](/public/script-screenshot.png)
+![screenshot of script loading correctly](./public/script-screenshot.png)
