@@ -25,7 +25,7 @@ export function middleware(request) {
     
     url.pathname = `/${territory}/${locale}`;
     
-    console.log(`Rewriting / to /${territory}/${locale}/home`);
+    console.log(`Rewriting / to /${territory}/${locale}/home `);
     return NextResponse.rewrite(new URL(`/${territory}/${locale}/home`, request.url));
   }
 
