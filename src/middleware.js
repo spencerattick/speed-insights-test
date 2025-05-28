@@ -15,8 +15,13 @@ export const config = {
   };
   
 export function middleware(request) {
-  const { pathname } = request.nextUrl;
+  const { pathname, url } = request.nextUrl;
   console.log("Incoming pathname: ", pathname);
+  
+  // Explicitly allow all Vercel analytics traffic
+  if (url.pathname.startsWith('/_vercel')) {
+    return NextResponse.next();
+  }
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
