@@ -17,11 +17,6 @@ export const config = {
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   console.log("Incoming pathname: ", pathname);
-  
-  // Explicitly allow all Vercel analytics traffic
-  if (pathname.startsWith('/_vercel')) {
-    return NextResponse.next();
-  }
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
@@ -31,7 +26,7 @@ export function middleware(request) {
     url.pathname = `/${territory}/${locale}`;
     
     console.log(`Rewriting / to /${territory}/${locale}/home `);
-    return NextResponse.redirect(new URL(`/${territory}/${locale}/home`, request.url));
+    return NextResponse.rewrite(new URL(`/${territory}/${locale}/home`, request.url));
   }
 
   return NextResponse.next();
